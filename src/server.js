@@ -5,7 +5,10 @@ const sequelize = require("./config/db");
 const errorHandler = require("./middlewares/errorHandler");
 
 const pratoRoutes = require("./routes/pratoRoutes");
-
+const linkCardapioRoutes = require("./routes/linkCardapioRoutes");
+const usuarioRoutes = require("./routes/usuarioRoutes");
+const duvidaRoutes = require("./routes/duvidaRoutes");
+const fotoRoutes = require("./routes/fotoRoutes");
 
 const app = express();
 
@@ -13,7 +16,10 @@ app.use(cors());
 app.use(express.json({ limit: "10mb" }));
 
 app.use("/api/pratos", pratoRoutes);
-
+app.use("/api/link-cardapio", linkCardapioRoutes);
+app.use("/api/usuarios", usuarioRoutes);
+app.use("/api/duvidas", duvidaRoutes);
+app.use("/api/fotos", fotoRoutes);
 
 app.use(errorHandler);
 
