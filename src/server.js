@@ -4,22 +4,34 @@ const cors = require("cors");
 const sequelize = require("./config/db");
 const errorHandler = require("./middlewares/errorHandler");
 
-const pratoRoutes = require("./routes/pratoRoutes");
-const linkCardapioRoutes = require("./routes/linkCardapioRoutes");
 const usuarioRoutes = require("./routes/usuarioRoutes");
 const duvidaRoutes = require("./routes/duvidaRoutes");
+const pratoRoutes = require("./routes/pratoRoutes");
+const linkCardapioRoutes = require("./routes/linkCardapioRoutes");
 const fotoRoutes = require("./routes/fotoRoutes");
+const inicioRoutes = require("./routes/inicioRoutes");
+const historiaRoutes = require("./routes/historiaRoutes");
+const espacoRoutes = require("./routes/espacoRoutes");
+const contatoInfoRoutes = require("./routes/contatoInfoRoutes");
+const horarioRoutes = require("./routes/horarioRoutes");
+const contatoHeaderRoutes = require("./routes/contatoHeaderRoutes");
 
 const app = express();
 
 app.use(cors());
 app.use(express.json({ limit: "10mb" }));
 
-app.use("/api/pratos", pratoRoutes);
-app.use("/api/link-cardapio", linkCardapioRoutes);
 app.use("/api/usuarios", usuarioRoutes);
 app.use("/api/duvidas", duvidaRoutes);
+app.use("/api/pratos", pratoRoutes);
+app.use("/api/link-cardapio", linkCardapioRoutes);
 app.use("/api/fotos", fotoRoutes);
+app.use("/api/inicio", inicioRoutes);
+app.use("/api/historia", historiaRoutes);
+app.use("/api/espaco", espacoRoutes);
+app.use("/api/contato-info", contatoInfoRoutes);
+app.use("/api/horarios", horarioRoutes);
+app.use("/api/contato-header", contatoHeaderRoutes);
 
 app.use(errorHandler);
 
