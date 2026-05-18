@@ -6,6 +6,12 @@ const Espaco = sequelize.define("Espaco", {
   foto_url: { type: DataTypes.TEXT("long"), allowNull: false },
   titulo: { type: DataTypes.STRING(150), allowNull: false },
   descricao: { type: DataTypes.TEXT, allowNull: false },
-}, { timestamps: false });
+}, 
+{
+  timestamps: false,
+  tableName: "Espaco",
+  freezeTableName: true,
+});
+
 
 module.exports = Espaco;

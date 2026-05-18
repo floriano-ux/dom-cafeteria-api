@@ -5,6 +5,11 @@ const Horario = sequelize.define("Horario", {
   idHorario: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   dia: { type: DataTypes.STRING(50), allowNull: false },
   horario: { type: DataTypes.STRING(50), allowNull: false },
-}, { timestamps: false });
+}, {
+  timestamps: false,
+  tableName: "Horario",
+  freezeTableName: true,
+});
+
 
 module.exports = Horario;
