@@ -15,6 +15,7 @@ const espacoRoutes = require("./routes/espacoRoutes");
 const contatoInfoRoutes = require("./routes/contatoInfoRoutes");
 const horarioRoutes = require("./routes/horarioRoutes");
 const contatoHeaderRoutes = require("./routes/contatoHeaderRoutes");
+const authRoutes = require("./routes/authRouter");
 
 const app = express();
 
@@ -32,6 +33,7 @@ app.use("/api/espaco", espacoRoutes);
 app.use("/api/contato-info", contatoInfoRoutes);
 app.use("/api/horarios", horarioRoutes);
 app.use("/api/contato-header", contatoHeaderRoutes);
+app.use("/api/auth", authRoutes);
 
 app.use(errorHandler);
 
