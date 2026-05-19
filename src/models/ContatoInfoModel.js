@@ -7,6 +7,12 @@ const ContatoInfo = sequelize.define("Contato_Info", {
   whatsapp_link: { type: DataTypes.STRING(255) },
   instagram: { type: DataTypes.STRING(100), allowNull: false },
   localizacao: { type: DataTypes.STRING(255), allowNull: false },
-}, { timestamps: false });
+}, 
+{
+  timestamps: false,
+  tableName: "Contato_Info",
+  freezeTableName: true,
+});
+
 
 module.exports = ContatoInfo;

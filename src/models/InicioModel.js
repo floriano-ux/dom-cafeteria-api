@@ -5,6 +5,11 @@ const Inicio = sequelize.define("Inicio", {
   idInicio: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   foto: { type: DataTypes.TEXT("long"), allowNull: false },
   texto: { type: DataTypes.TEXT, allowNull: false },
-}, { timestamps: false });
+}, 
+{
+  timestamps: false,
+  tableName: "Inicio",
+  freezeTableName: true,
+});
 
 module.exports = Inicio;

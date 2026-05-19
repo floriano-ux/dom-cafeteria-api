@@ -5,6 +5,12 @@ const Prato = sequelize.define("Pratos", {
   idPrato: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   nome: { type: DataTypes.STRING(100) },
   foto_url: { type: DataTypes.TEXT("long"), allowNull: false },
-}, { timestamps: false });
+}, 
+{
+  timestamps: false,
+  tableName: "Pratos",
+  freezeTableName: true,
+});
+
 
 module.exports = Prato;

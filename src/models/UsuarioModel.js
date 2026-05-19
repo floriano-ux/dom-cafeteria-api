@@ -7,7 +7,13 @@ const Usuario = sequelize.define("Usuarios", {
   email: { type: DataTypes.STRING(255), allowNull: false },
   senha_hash: { type: DataTypes.STRING(255), allowNull: false },
   telefone: { type: DataTypes.STRING(45), allowNull: false },
-}, { timestamps: false });
+}, 
+{
+  timestamps: false,
+  tableName: "Usuarios",
+  freezeTableName: true,
+});
+
 
 module.exports = Usuario;
 
