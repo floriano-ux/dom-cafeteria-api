@@ -26,21 +26,21 @@ async function login(req, res, next) {
   }
 }
 
-async function recuperarSenha(req, res, next) {
-  try {
-    const { email } = req.body;
+    async function recuperarSenha(req, res, next) {
+      try {
+        const { email } = req.body;
 
-    if (!email)
-      return res.status(400).json({ erro: "Email é obrigatório." });
+        if (!email)
+          return res.status(400).json({ erro: "Email é obrigatório." });
 
-    const usuario = await Usuario.findOne({ where: { email } });
-    if (!usuario)
-      return res.status(404).json({ erro: "Email não encontrado." });
+        const usuario = await Usuario.findOne({ where: { email } });
+        if (!usuario)
+          return res.status(404).json({ erro: "Email não encontrado." });
 
-    res.json({ mensagem: "Email encontrado." });
-  } catch (err) {
-    next(err);
-  }
-}
+        res.json({ mensagem: "Email encontrado." });
+      } catch (err) {
+        next(err);
+      }
+    }
 
 module.exports = { login, recuperarSenha };

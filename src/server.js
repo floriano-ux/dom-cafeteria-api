@@ -31,7 +31,7 @@ app.use("/api/inicio", inicioRoutes);
 app.use("/api/historia", historiaRoutes);
 app.use("/api/espaco", espacoRoutes);
 app.use("/api/contato-info", contatoInfoRoutes);
-app.use("/api/horarios", horarioRoutes);
+app.use("/api/horario", horarioRoutes);
 app.use("/api/contato-header", contatoHeaderRoutes);
 app.use("/api/auth", authRoutes);
 
