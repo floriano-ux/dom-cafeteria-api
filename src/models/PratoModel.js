@@ -1,16 +1,14 @@
-const { DataTypes } = require("sequelize");
-const sequelize = require("../config/db");
+﻿const { Schema, model } = require("mongoose");
 
-const Prato = sequelize.define("Pratos", {
-  idPrato: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-  nome: { type: DataTypes.STRING(100) },
-  foto_url: { type: DataTypes.TEXT("long"), allowNull: false },
-}, 
-{
-  timestamps: false,
-  tableName: "Pratos",
-  freezeTableName: true,
-});
+const PratoSchema = new Schema(
+  {
+    nome: { type: String },
+    foto_url: { type: String, required: true },
+  },
+  {
+    collection: "Pratos",
+    timestamps: false,
+  }
+);
 
-
-module.exports = Prato;
+module.exports = model("Prato", PratoSchema);

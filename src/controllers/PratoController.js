@@ -1,8 +1,8 @@
-const Prato = require("../models/PratoModel");
+﻿const Prato = require("../models/PratoModel");
 
 async function getAll(req, res, next) {
   try {
-    const pratos = await Prato.findAll();
+    const pratos = await Prato.find();
     res.json(pratos);
   } catch (err) {
     next(err);
@@ -11,7 +11,7 @@ async function getAll(req, res, next) {
 
 async function getById(req, res, next) {
   try {
-    const prato = await Prato.findByPk(req.params.id);
+    const prato = await Prato.findById(req.params.id);
     if (!prato) return res.status(404).json({ erro: "Prato não encontrado." });
     res.json(prato);
   } catch (err) {
@@ -31,10 +31,13 @@ async function create(req, res, next) {
 
 async function update(req, res, next) {
   try {
-    const prato = await Prato.findByPk(req.params.id);
-    if (!prato) return res.status(404).json({ erro: "Prato não encontrado." });
     const { nome, foto_url } = req.body;
-    await prato.update({ nome, foto_url });
+    const prato = await Prato.findByIdAndUpdate(
+      req.params.id,
+      { nome, foto_url },
+      { new: true }
+    );
+    if (!prato) return res.status(404).json({ erro: "Prato não encontrado." });
     res.json(prato);
   } catch (err) {
     next(err);
@@ -43,9 +46,8 @@ async function update(req, res, next) {
 
 async function remove(req, res, next) {
   try {
-    const prato = await Prato.findByPk(req.params.id);
+    const prato = await Prato.findByIdAndDelete(req.params.id);
     if (!prato) return res.status(404).json({ erro: "Prato não encontrado." });
-    await prato.destroy();
     res.json({ mensagem: "Prato removido com sucesso." });
   } catch (err) {
     next(err);

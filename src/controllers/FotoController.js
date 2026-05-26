@@ -1,8 +1,8 @@
-const Foto = require("../models/FotoModel");
+﻿const Foto = require("../models/FotoModel");
 
 async function getAll(req, res, next) {
   try {
-    const fotos = await Foto.findAll();
+    const fotos = await Foto.find();
     res.json(fotos);
   } catch (err) {
     next(err);
@@ -11,7 +11,7 @@ async function getAll(req, res, next) {
 
 async function getById(req, res, next) {
   try {
-    const foto = await Foto.findByPk(req.params.id);
+    const foto = await Foto.findById(req.params.id);
     if (!foto) return res.status(404).json({ erro: "Foto não encontrada." });
     res.json(foto);
   } catch (err) {
@@ -31,10 +31,13 @@ async function create(req, res, next) {
 
 async function update(req, res, next) {
   try {
-    const foto = await Foto.findByPk(req.params.id);
-    if (!foto) return res.status(404).json({ erro: "Foto não encontrada." });
     const { nome, foto_url } = req.body;
-    await foto.update({ nome, foto_url });
+    const foto = await Foto.findByIdAndUpdate(
+      req.params.id,
+      { nome, foto_url },
+      { new: true }
+    );
+    if (!foto) return res.status(404).json({ erro: "Foto não encontrada." });
     res.json(foto);
   } catch (err) {
     next(err);
@@ -43,9 +46,8 @@ async function update(req, res, next) {
 
 async function remove(req, res, next) {
   try {
-    const foto = await Foto.findByPk(req.params.id);
+    const foto = await Foto.findByIdAndDelete(req.params.id);
     if (!foto) return res.status(404).json({ erro: "Foto não encontrada." });
-    await foto.destroy();
     res.json({ mensagem: "Foto removida com sucesso." });
   } catch (err) {
     next(err);
