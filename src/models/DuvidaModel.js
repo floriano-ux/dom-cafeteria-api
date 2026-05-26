@@ -1,16 +1,14 @@
-const { DataTypes } = require("sequelize");
-const sequelize = require("../config/db");
+﻿const { Schema, model } = require("mongoose");
 
-const Duvida = sequelize.define("Duvidas_Frequentes", {
-  idDuvida: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-  pergunta: { type: DataTypes.TEXT },
-  resposta: { type: DataTypes.TEXT },
-}, 
-{
-  timestamps: false,
-  tableName: "Duvidas_Frequentes",
-  freezeTableName: true,
-});
+const DuvidaSchema = new Schema(
+  {
+    pergunta: { type: String },
+    resposta: { type: String },
+  },
+  {
+    collection: "Duvidas_Frequentes",
+    timestamps: false,
+  }
+);
 
-
-module.exports = Duvida;
+module.exports = model("Duvida", DuvidaSchema);

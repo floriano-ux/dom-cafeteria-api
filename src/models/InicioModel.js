@@ -1,15 +1,14 @@
-  const { DataTypes } = require("sequelize");
-  const sequelize = require("../config/db");
+﻿const { Schema, model } = require("mongoose");
 
-  const Inicio = sequelize.define("Inicio", {
-    idInicio: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-    foto: { type: DataTypes.TEXT("long"), allowNull: false },
-    texto: { type: DataTypes.TEXT, allowNull: false },
-  }, 
+const InicioSchema = new Schema(
   {
+    foto: { type: String, required: true },
+    texto: { type: String, required: true },
+  },
+  {
+    collection: "Inicio",
     timestamps: false,
-    tableName: "Inicio",
-    freezeTableName: true,
-  });
+  }
+);
 
-  module.exports = Inicio;
+module.exports = model("Inicio", InicioSchema);

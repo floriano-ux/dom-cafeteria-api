@@ -1,7 +1,7 @@
-require("dotenv").config();
+﻿require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
-const sequelize = require("./config/db");
+require("./config/db");
 const errorHandler = require("./middlewares/errorHandler");
 
 const usuarioRoutes = require("./routes/usuarioRoutes");
@@ -21,6 +21,7 @@ const app = express();
 
 app.use(cors());
 app.use(express.json({ limit: "10mb" }));
+app.use(express.urlencoded({ extended: true }));
 
 app.use("/api/usuarios", usuarioRoutes);
 app.use("/api/duvidas", duvidaRoutes);
@@ -39,11 +40,6 @@ app.use(errorHandler);
 
 const PORT = process.env.PORT || 3000;
 
-sequelize.authenticate()
-  .then(() => {
-    console.log("Banco de dados conectado.");
-    app.listen(PORT, () => console.log(`Servidor rodando na porta ${PORT}`));
-  })
-  .catch((err) => console.error("Erro ao conectar ao banco:", err));
+app.listen(PORT, () => console.log(`Servidor rodando na porta ${PORT}`));
 
-  module.exports = app;
+module.exports = app;

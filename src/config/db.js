@@ -1,16 +1,17 @@
-require("dotenv").config();
-const { Sequelize } = require("sequelize");
+﻿require("dotenv").config();
+const mongoose = require("mongoose");
 
-const sequelize = new Sequelize(
-  process.env.DB_NAME,
-  process.env.DB_USER,
-  process.env.DB_PASS,
-  {
-    host: process.env.DB_HOST,
-    port: process.env.DB_PORT,
-    dialect: "mysql",
-    logging: console.log,
-  }
-);
+const { MONGO_URI } = process.env;
 
-module.exports = sequelize;
+if (!MONGO_URI) {
+  throw new Error("MONGO_URI is required.");
+}
+
+mongoose.set("strictQuery", false);
+
+mongoose
+  .connect(MONGO_URI)
+  .then(() => console.log("MongoDB conectado."))
+  .catch((err) => console.error("Erro ao conectar ao MongoDB:", err));
+
+module.exports = mongoose;

@@ -1,17 +1,15 @@
-const { DataTypes } = require("sequelize");
-const sequelize = require("../config/db");
+﻿const { Schema, model } = require("mongoose");
 
-const Espaco = sequelize.define("Espaco", {
-  idEspaco: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-  foto_url: { type: DataTypes.TEXT("long"), allowNull: false },
-  titulo: { type: DataTypes.STRING(150), allowNull: false },
-  descricao: { type: DataTypes.TEXT, allowNull: false },
-}, 
-{
-  timestamps: false,
-  tableName: "Espaco",
-  freezeTableName: true,
-});
+const EspacoSchema = new Schema(
+  {
+    foto_url: { type: String, required: true },
+    titulo: { type: String, required: true },
+    descricao: { type: String, required: true },
+  },
+  {
+    collection: "Espaco",
+    timestamps: false,
+  }
+);
 
-
-module.exports = Espaco;
+module.exports = model("Espaco", EspacoSchema);

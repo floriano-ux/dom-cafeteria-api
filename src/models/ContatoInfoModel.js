@@ -1,18 +1,16 @@
-const { DataTypes } = require("sequelize");
-const sequelize = require("../config/db");
+﻿const { Schema, model } = require("mongoose");
 
-const ContatoInfo = sequelize.define("Contato_Info", {
-  idContato: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-  whatsapp: { type: DataTypes.STRING(20), allowNull: false },
-  whatsapp_link: { type: DataTypes.STRING(255) },
-  instagram: { type: DataTypes.STRING(100), allowNull: false },
-  localizacao: { type: DataTypes.STRING(255), allowNull: false },
-}, 
-{
-  timestamps: false,
-  tableName: "Contato_Info",
-  freezeTableName: true,
-});
+const ContatoInfoSchema = new Schema(
+  {
+    whatsapp: { type: String, required: true },
+    whatsapp_link: { type: String },
+    instagram: { type: String, required: true },
+    localizacao: { type: String, required: true },
+  },
+  {
+    collection: "Contato_Info",
+    timestamps: false,
+  }
+);
 
-
-module.exports = ContatoInfo;
+module.exports = model("ContatoInfo", ContatoInfoSchema);

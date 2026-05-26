@@ -1,15 +1,14 @@
-const { DataTypes } = require("sequelize");
-const sequelize = require("../config/db");
+﻿const { Schema, model } = require("mongoose");
 
-const Horario = sequelize.define("Horario", {
-  idHorario: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-  dia: { type: DataTypes.STRING(50), allowNull: false },
-  horario: { type: DataTypes.STRING(50), allowNull: false },
-}, {
-  timestamps: false,
-  tableName: "Horario",
-  freezeTableName: true,
-});
+const HorarioSchema = new Schema(
+  {
+    dia: { type: String, required: true },
+    horario: { type: String, required: true },
+  },
+  {
+    collection: "Horario",
+    timestamps: false,
+  }
+);
 
-
-module.exports = Horario;
+module.exports = model("Horario", HorarioSchema);

@@ -1,16 +1,13 @@
-const { DataTypes } = require("sequelize");
-const sequelize = require("../config/db");
+﻿const { Schema, model } = require("mongoose");
 
-const LinkCardapio = sequelize.define("Link_Cardapio", {
-  idLink: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-  link: { type: DataTypes.STRING(255) },
-  
-}, 
-{
-  timestamps: false,
-  tableName: "Link_Cardapio",
-  freezeTableName: true,
-});
+const LinkCardapioSchema = new Schema(
+  {
+    link: { type: String },
+  },
+  {
+    collection: "Link_Cardapio",
+    timestamps: false,
+  }
+);
 
-
-module.exports = LinkCardapio;
+module.exports = model("LinkCardapio", LinkCardapioSchema);
